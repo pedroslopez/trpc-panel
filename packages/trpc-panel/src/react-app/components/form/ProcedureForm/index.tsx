@@ -96,9 +96,9 @@ export function ProcedureForm({
     reset: resetForm,
     handleSubmit,
   } = useForm({
-    resolver: ajvResolver(wrapJsonSchema(procedure.inputSchema as any), {
-      formats: fullFormats,
-    }),
+    // resolver: ajvResolver(wrapJsonSchema(procedure.inputSchema as any), {
+    //   formats: fullFormats,
+    // }),
     defaultValues: {
       [ROOT_VALS_PROPERTY_NAME]: defaultFormValuesForNode(procedure.node),
     },

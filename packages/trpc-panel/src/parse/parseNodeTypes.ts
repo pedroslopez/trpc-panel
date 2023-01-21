@@ -24,6 +24,10 @@ export type EnumNode = {
   enumValues: string[];
 } & SharedInputNodeProperties;
 
+export type DateNode = {
+  type: "date";
+} & SharedInputNodeProperties;
+
 export type DiscriminatedUnionNode = {
   type: "discriminated-union";
   discriminatedUnionValues: string[];
@@ -62,6 +66,7 @@ export type ParsedInputNode =
   | StringNode
   | NumberNode
   | BooleanNode
+  | DateNode
   | UnsupportedNode;
 
 export type AddDataFunctions = {

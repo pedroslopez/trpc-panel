@@ -233,7 +233,7 @@ export const testRouter = t.router({
       return "yep";
     }),
   }),
-
+  dateThing: t.procedure.input(z.date()).query(() => ({success: true})),
   anErrorThrowingRoute: t.procedure
     .input(
       z.object({
@@ -259,6 +259,7 @@ export const testRouter = t.router({
         optionalEnum: z.enum(["Three", "Four"]).optional(),
         stringArray: z.string().array(),
         boolean: z.boolean(),
+        date: z.date(),
         union: z.discriminatedUnion("disc", [
           z.object({
             disc: z.literal("one"),

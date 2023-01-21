@@ -21,6 +21,8 @@ export function defaultFormValuesForNode(node: ParsedInputNode): any {
         obj[name] = defaultFormValuesForNode(node);
       }
       return obj;
+    case "date":
+      return new Date();
     case "literal":
       return node.value;
     case "string":

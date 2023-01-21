@@ -4,6 +4,7 @@ import { Control } from "react-hook-form";
 import { ParsedInputNode } from "../../../parse/parseNodeTypes";
 import { ArrayField } from "./fields/ArrayField";
 import { BooleanField } from "./fields/BooleanField";
+import { DateField } from "./fields/DateField";
 import { DiscriminatedUnionField } from "./fields/DiscriminatedUnionField";
 import { EnumField } from "./fields/EnumField";
 import { LiteralField } from "./fields/LiteralField";
@@ -79,6 +80,15 @@ export function Field({
       );
     case "literal":
       return <LiteralField />;
+    case "date":
+      return (
+        <DateField 
+          name={path} 
+          control={control}
+            node={inputNode}
+            label={label}
+        />
+      );
     case "unsupported":
       return null;
   }
