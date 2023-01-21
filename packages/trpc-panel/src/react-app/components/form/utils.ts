@@ -22,7 +22,7 @@ export function defaultFormValuesForNode(node: ParsedInputNode): any {
       }
       return obj;
     case "date":
-      return new Date();
+      return;
     case "literal":
       return node.value;
     case "string":

@@ -21,12 +21,12 @@ export function DateField({
     <Controller
       name={name}
       control={control}
-
       render={
-          ({ field: { onChange, ...restField } }) =>
+          ({ field: { onChange, value, ...restField } }) =>
           <LocalizationProvider dateAdapter={AdapterLuxon}>
               <DateTimePicker
                   label={label}
+                  value={value ? value : null}
                   onChange={(event: luxon.DateTime) => { onChange(event?.toJSDate()); }}
                   renderInput={(params) =>
                   <TextField
