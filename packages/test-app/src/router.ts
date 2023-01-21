@@ -153,6 +153,18 @@ const subscriptionRouter = t.router({
   }),
 });
 
+enum ExampleStringEnum {
+  ONE = "one",
+  TWO = "two",
+  THREE = "three"
+}
+
+enum ExampleNumberEnum {
+  ONE = 1,
+  TWO = 2,
+  THREE = 3
+}
+
 export const testRouter = t.router({
   userRouter: userRouter,
   postsRouter: postsRouter,
@@ -233,7 +245,11 @@ export const testRouter = t.router({
       return "yep";
     }),
   }),
-  dateThing: t.procedure.input(z.date()).query(() => ({success: true})),
+  customs: t.procedure.input(z.object({
+    dateTime: z.date(),
+    nativeStrEnum: z.nativeEnum(ExampleStringEnum),
+    nativeNumEnum: z.nativeEnum(ExampleNumberEnum)
+  })).query(() => ({success: true})),
   anErrorThrowingRoute: t.procedure
     .input(
       z.object({

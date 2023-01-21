@@ -17,7 +17,8 @@ import {
   ZodStringDef,
   ZodUndefinedDef,
   ZodVoidDef,
-  ZodDateDef
+  ZodDateDef,
+  ZodNativeEnumDef
 } from "zod";
 import { parseZodStringDef } from "./parsers/parseZodStringDef";
 import { ParserSelectorFunction } from "../../parseNodeTypes";
@@ -43,6 +44,7 @@ import { parseZodPromiseDef } from "@src/parse/input-mappers/zod/parsers/parseZo
 import { parseZodUndefinedDef } from "@src/parse/input-mappers/zod/parsers/parseZodUndefinedDef";
 import { parseZodVoidDef } from "./parsers/parseZodVoidDef";
 import { parseZodDateDef } from "./parsers/parseZodDateDef";
+import { parseZodNativeEnumDef } from "./parsers/parseZodNativeEnumDef";
 
 export const zodSelectorFunction: ParserSelectorFunction<ZodDefWithType> = (
   def,
@@ -65,6 +67,8 @@ export const zodSelectorFunction: ParserSelectorFunction<ZodDefWithType> = (
       );
     case ZodFirstPartyTypeKind.ZodEnum:
       return parseZodEnumDef(def as ZodEnumDef, references);
+    case ZodFirstPartyTypeKind.ZodNativeEnum:
+      return parseZodNativeEnumDef(def as ZodNativeEnumDef, references);
     case ZodFirstPartyTypeKind.ZodLiteral:
       return parseZodLiteralDef(def as ZodLiteralDef, references);
     case ZodFirstPartyTypeKind.ZodNumber:

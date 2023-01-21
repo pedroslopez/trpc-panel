@@ -21,7 +21,7 @@ export type ObjectNode = {
 
 export type EnumNode = {
   type: "enum";
-  enumValues: string[];
+  enumValues: (string | number)[];
 } & SharedInputNodeProperties;
 
 export type DateNode = {
