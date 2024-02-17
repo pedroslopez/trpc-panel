@@ -36,6 +36,9 @@ const postsRouter = createTRPCRouter({
 export const appRouter = createTRPCRouter({
   postsRouter,
   inputShowcaseRouter: createTRPCRouter({
+    recordInput: procedure.input(z.record(z.string())).query(() => {
+      return "It's an input";
+    }),
     textInput: procedure
       .input(z.object({ aTextInput: z.string() }))
       .query(() => {

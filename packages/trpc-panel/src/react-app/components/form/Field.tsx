@@ -9,6 +9,7 @@ import { EnumField } from "./fields/EnumField";
 import { LiteralField } from "./fields/LiteralField";
 import { NumberField } from "./fields/NumberField";
 import { ObjectField } from "./fields/ObjectField";
+import { RecordField } from "./fields/RecordField";
 import { TextField } from "./fields/TextField";
 
 export function Field({
@@ -79,6 +80,14 @@ export function Field({
       );
     case "literal":
       return <LiteralField />;
+    case "record":
+      return (
+        <RecordField 
+          label={label}
+          control={control}
+          node={inputNode}
+        />
+      );
     case "unsupported":
       return null;
   }

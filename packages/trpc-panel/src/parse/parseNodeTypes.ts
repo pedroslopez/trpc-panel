@@ -14,6 +14,11 @@ export type ArrayNode = {
   childType: ParsedInputNode;
 } & SharedInputNodeProperties;
 
+export type RecordNode = {
+  type: "record";
+  valueType: ParsedInputNode;
+} & SharedInputNodeProperties;
+
 export type ObjectNode = {
   type: "object";
   children: { [name: string]: ParsedInputNode };
@@ -56,6 +61,7 @@ export type UnsupportedNode = {
 export type ParsedInputNode =
   | ArrayNode
   | ObjectNode
+  | RecordNode
   | EnumNode
   | DiscriminatedUnionNode
   | LiteralNode
@@ -65,17 +71,19 @@ export type ParsedInputNode =
   | UnsupportedNode;
 
 export type AddDataFunctions = {
-    addDescriptionIfExists: (def: {description?: string}, refs: ParseReferences) => void;
-  }
+  addDescriptionIfExists: (
+    def: { description?: string },
+    refs: ParseReferences
+  ) => void;
+};
 
 export type ParseReferences = {
   path: string[];
   optional?: true;
   // Doesn't do anything yet but maybe down the road we can extend with this
   options: TrpcPanelExtraOptions;
-  addDataFunctions: AddDataFunctions
+  addDataFunctions: AddDataFunctions;
 };
-
 
 export type ParseFunction<
   InputNodeType extends InputNodeTypes,

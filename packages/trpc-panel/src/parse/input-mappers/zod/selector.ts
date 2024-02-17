@@ -14,6 +14,7 @@ import {
   ZodObjectDef,
   ZodOptionalDef,
   ZodPromiseDef,
+  ZodRecordDef,
   ZodStringDef,
   ZodUndefinedDef,
   ZodVoidDef,
@@ -41,6 +42,7 @@ import { parseZodNullDef } from "@src/parse/input-mappers/zod/parsers/parseZodNu
 import { parseZodPromiseDef } from "@src/parse/input-mappers/zod/parsers/parseZodPromiseDef";
 import { parseZodUndefinedDef } from "@src/parse/input-mappers/zod/parsers/parseZodUndefinedDef";
 import { parseZodVoidDef } from "./parsers/parseZodVoidDef";
+import { parseZodRecordDef } from "./parsers/parseZodRecordDef";
 
 export const zodSelectorFunction: ParserSelectorFunction<ZodDefWithType> = (
   def,
@@ -91,6 +93,8 @@ export const zodSelectorFunction: ParserSelectorFunction<ZodDefWithType> = (
       return parseZodUndefinedDef(def as ZodUndefinedDef, references);
     case ZodFirstPartyTypeKind.ZodVoid:
       return parseZodVoidDef(def as ZodVoidDef, references);
+    case ZodFirstPartyTypeKind.ZodRecord:
+      return parseZodRecordDef(def as ZodRecordDef, references);
   }
   return { type: "unsupported", path: references.path };
 };
